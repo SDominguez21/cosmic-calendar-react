@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import {Route, Link, Switch} from 'react-router-dom';
-// import ProjectIndex from './components/projectindex/ProjectIndex.js'
-// import ProjectDetails from './components/projectdetails/ProjectDetails';
+import Navbar from './components/navbar/Navbar.js'
+
 import Signup from './components/signup/Signup.js';
 import Login from './components/login/Login.js';
 import AuthService from './services/AuthService.js';
-import Navbar from './components/navbar/Navbar.js'
+import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -14,7 +13,8 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = { 
-      listOfProjects: [],
+      listOfTideEvents: [],
+      listOfSunandMoonEvents: [],
       currentlyLoggedIn: null,
       ready: false,
       signupShowing: false,
@@ -26,13 +26,20 @@ class App extends React.Component {
   
   }
 
-  getAllProjects = () => {
-    axios.get(`http://localhost:5000/api/projects`, {withCredentials: true})
-    .then(responseFromApi => {
-      this.setState({
-        listOfProjects: responseFromApi.data, ready: true
-      })
-    })
+  getAllEvents = async() => {
+
+    let tides = await axios.get(`https://api.aerisapi.com/tides/:auto?&from=07/30/2019&to=07/31/2019&radius=50mi&limit=1&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
+    ` /*, {withCredentials: true}*/);
+
+    let sunandmoon = await axios.get(`https://api.aerisapi.com/sunmoon/:auto?&from=07/30/2019&to=07/31/2019&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
+    `)
+      
+        this.setState({
+        listOfTideEvents: tides.data, ready: true
+      });
+        this.setState({
+        listOfSunandMoonEvents: sunandmoon.data, ready: true
+        })
   }
 
 
@@ -46,7 +53,6 @@ getCurrentlyLoggedInUser = () =>{
   })
 }
 
-
 toggleForm = (whichForm) =>{
 
   let theForm;
@@ -58,15 +64,12 @@ toggleForm = (whichForm) =>{
   }
 
   this.setState({[theForm]: !this.state[theForm]})
-
-  
-
 }
 
 
 
   componentDidMount() {
-      this.getAllProjects();
+      this.getAllEvents();
       this.getCurrentlyLoggedInUser();
 
   }
@@ -74,7 +77,7 @@ toggleForm = (whichForm) =>{
 
 render(){
 
-  console.log('=-=-=-=-=-=-=-',this.state);
+  console.log('*************',this.state);
 
 
     return (
@@ -102,7 +105,7 @@ render(){
       }
 
         <Switch>
-          <Route exact path="/projects" render ={(props)=> <ProjectIndex
+        {/* <Route exact path="/projects" render ={(props)=> <ProjectIndex
            {...props} 
            theUser = {this.state.currentlyLoggedIn} 
            allTheProjects ={this.state.listOfProjects}
@@ -117,7 +120,7 @@ render(){
            ready = {this.state.ready}
            getData = {this.getAllProjects}
            theUser = {this.state.currentlyLoggedIn}
-           />} />
+           />} /> */}
 
 
 
