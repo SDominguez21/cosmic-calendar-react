@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import Navbar from "../navbar/Navbar";
+// import "./App.css";
+
+// import { Link } from "react-router-dom";
 
 class Home extends Component {
   render() {
     return (
       <div>
-         <Navbar
-          // theUser={this.state.currentlyLoggedIn}
-          // pleaseLogOut={() => this.service.logout()}
-          // toggleForm={this.toggleForm}
-          // getUser={this.getCurrentlyLoggedInUser}
-        /> 
+        <h1>home</h1>
       </div>
     );
   }

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import AuthService from '../../services/AuthService';
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props){
     super(props);
     this.state = { usernameInput: '', passwordInput: '' };
-    this.service = new AuthService();
   }
 
   handleChange = (e) =>{
@@ -17,10 +16,13 @@ class Login extends Component {
       const uName = this.state.usernameInput;
       const pWord = this.state.passwordInput;
     
-      this.service.login(uName, pWord)
+      axios.post('http://localhost:5000/api/auth/login', {
+        username: uName,
+        password: pWord
+      }, {withCredentials: true})
       .then(()=>{
-          this.props.toggleForm('login');
-          this.props.getUser();
+        this.props.getUser()
+        this.props.toggleForm('login');
       })
 
   }

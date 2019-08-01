@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import AuthService from '../../services/AuthService';
+import axios from 'axios';
 
 class Signup extends Component {
   constructor(props){
     super(props);
     this.state = { usernameInput: '', passwordInput: '' };
-    this.service = new AuthService();
   }
 
   handleChange = (e) =>{
       this.setState({[e.target.name]: e.target.value})
+      // this.setState({usernameInput: 'hello' })
+      // this is what this line evaluates to
   }
 
   tryToSignUp = (e) =>{
@@ -17,16 +18,21 @@ class Signup extends Component {
       const uName = this.state.usernameInput;
       const pWord = this.state.passwordInput;
     
-    this.service.signup(uName, pWord)
+      axios.post('http://localhost:5000/api/auth/signup', {
+        username: uName,
+        password: pWord
+      }, {withCredentials: true})
     .then(()=>{
+      this.props.getUser();
         this.props.toggleForm('signup');
-        this.props.getUser();
     })
 
   }
 
+  
 
   render(){
+    console.log(this.state)
     return(
       <form onSubmit = {this.tryToSignUp}>
 
