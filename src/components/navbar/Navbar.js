@@ -1,29 +1,26 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
+function Navbar(props) {
+  const logout = () =>{
+      props.pleaseLogOut()
+      .then(()=>{
+          props.getUser();
+      })
 
+  }
+  console.log(props);
+  return (
+    <nav>
+      {props.theUser && (
+        <div>
+          <Link to="/all-forcasts">All Tide Events</Link>
+          <Link to="/all-sun-moon">All Sun and Moon Events </Link>
+          <Link to="/all-cosmic-events">All Cosmic Events</Link>
+        </div>
+      )}
 
-function Navbar(props){
-
-    const doTheLogout = () =>{
-        props.pleaseLogOut()
-        .then(()=>{
-            props.getUser();
-        })
-
-    }
-
-    return(
-
-
-
-        <nav>
-            {props.theUser && 
-        <Link to="/projects" style={{ textDecoration: 'none', margin: '10px' }}>Projects</Link>
-            }
-
-
-        {!props.theUser && 
+      {/* {!props.theUser && 
         <span>
         <button onClick = {()=> props.toggleForm('login')} > Login </button>
         <button onClick = {()=> props.toggleForm('signup')}>Sign Up</button>
@@ -32,20 +29,13 @@ function Navbar(props){
 
         {props.theUser && 
         <span>
-        <div>
-            <Link to = "/all-tide">All Tide Events</Link>
-            <Link to="/all-sun-moon" >All Sun and Moon Events </Link>
-            <Link to = "/all-cosmic-events">All Cosmic Events</Link>
-            
-        </div>
-        <button onClick = {doTheLogout} >Log Out </button>
+        <button onClick = {logout} >Log Out </button>
 
             <span>Hello, {props.theUser.username}</span>
         </span>
-        }
-        </nav>
-    )
-
+        } */}
+    </nav>
+  );
 }
 
 export default Navbar;
