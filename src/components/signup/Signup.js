@@ -36,7 +36,7 @@ class Signup extends Component {
     return(
       <form onSubmit = {this.tryToSignUp}>
 
-          <h3>Signup For An Account</h3>
+          <h3>Sign up</h3>
 
           <legend>Username</legend>
           <input value={this.state.usernameInput}
@@ -47,6 +47,7 @@ class Signup extends Component {
           <legend>Password</legend>
           <input value={this.state.passwordInput} 
             name="passwordInput"
+            type="password"
             onChange={this.handleChange}
           />
 

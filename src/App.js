@@ -32,9 +32,10 @@ class App extends React.Component {
   fetchEvents = async () => {
     let weather = await axios.get(
       `https://api.aerisapi.com/forecasts/miami,fl&format=json&filter=day&limit=7&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
-    `,
+      `,
       { withCredentials: true }
     );
+    console.log("loooook at me");
 
     let sunandmoon = await axios.get(
       `https://api.aerisapi.com/sunmoon/miami,fl&from=07/30/2019&to=07/31/2019&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
@@ -141,7 +142,7 @@ class App extends React.Component {
             path="/all-sun-moon"
             render={props => (
               <AllSunMoon
-                {...props}
+                // {...props}
                 listOfSunandMoonEvents={this.state.visibleSunandMoon}
                 ready={this.state.ready}
               />
@@ -163,6 +164,17 @@ class App extends React.Component {
             path="/forcast-details/:id"
             render={props => (
               <ForcastDetails
+                {...props}
+                listOfForcasts={this.state.visibleForcast}
+                ready={this.state.ready}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/home"
+            render={props => (
+              <Home
                 {...props}
                 listOfForcasts={this.state.visibleForcast}
                 ready={this.state.ready}
