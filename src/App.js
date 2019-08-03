@@ -6,7 +6,7 @@ import Navbar from "./components/navbar/Navbar.js";
 import Signup from "./components/signup/Signup.js";
 import Login from "./components/login/Login.js";
 import AllForcasts from "./components/all-forcasts/AllForcasts";
-import AllSunMoon from "./components/all-sun-moon/AllSunMoon";
+import AllMoon from "./components/all-moon/AllMoon";
 import ForcastDetails from "./components/forcast-details/ForcastDetails";
 // import AllCosmicEvents from "./components/all-comsic-events/AllaCosmicEvents";ll
 // import Moment from 'react-moment';
@@ -18,8 +18,8 @@ class App extends React.Component {
     this.state = {
       listOfForcasts: [],
       visibleForcast: [],
-      listOfSunandMoonEvents: [],
-      visibleSunandMoon: [],
+      listOfMoonEvents: [],
+      visibleMoon: [],
       currentlyLoggedIn: null,
       ready: false,
       signupShowing: false,
@@ -30,18 +30,21 @@ class App extends React.Component {
   }
 
   fetchEvents = async () => {
+    console.log("for the love of god");
     let weather = await axios.get(
-      `https://api.aerisapi.com/forecasts/miami,fl&format=json&filter=day&limit=7&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
-      `,
-      { withCredentials: true }
+      `https://api.aerisapi.com/forecasts/miami,fl?filter=daynight&limit=60&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR`
     );
-    console.log("loooook at me");
 
-    let sunandmoon = await axios.get(
-      `https://api.aerisapi.com/sunmoon/miami,fl&from=07/30/2019&to=07/31/2019&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
-    `,
-      { withCredentials: true }
+    let moon = await axios.get(
+      `https://api.aerisapi.com/sunmoon/moonphases?limit=31&miami,fl&from=08/02/2019&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
+    `
     );
+
+    let actualWeatherArray = weather.data.response[0].periods;
+    console.log(actualWeatherArray);
+
+    let actualmoon = moon.data.response[0];
+    console.table(moon.data.response[0])
 
     this.setState({
       listOfForcasts: weather.data,
@@ -49,8 +52,8 @@ class App extends React.Component {
       ready: true
     });
     this.setState({
-      listOfSunandMoonEvents: sunandmoon.data,
-      visibleSunandMoon: sunandmoon.data,
+      listOfMoonEvents: moon.data,
+      visibleMoon: moon.data,
       ready: true
     });
   };
@@ -139,11 +142,11 @@ class App extends React.Component {
           {/* <Route  exact path ="/all-cosmic-events" render = {(props) => <AllCosmicEvents {...props} getData = {this.*MULTIPLE SEEDS*}  />    } /> */}
           <Route
             exact
-            path="/all-sun-moon"
+            path="/all-moon"
             render={props => (
-              <AllSunMoon
+              <AllMoon
                 // {...props}
-                listOfSunandMoonEvents={this.state.visibleSunandMoon}
+                listOfMoonEvents={this.state.visibleMoon}
                 ready={this.state.ready}
               />
             )}
@@ -182,7 +185,7 @@ class App extends React.Component {
             )}
           />
         </Switch>
-        testeroni toni
+        yay! this is my app
       </div>
     );
   }

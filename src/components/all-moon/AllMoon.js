@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class AllSunMoon extends Component {
+export default class AllMoon extends Component {
   componentDidMount() {
     console.log(this.props);
   }
