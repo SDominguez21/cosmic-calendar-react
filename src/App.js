@@ -3,6 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/home/Home.js';
 import Navbar from './components/navbar/Navbar.js';
+import Today from './components/today/Today';
 import Signup from './components/signup/Signup.js';
 import Login from './components/login/Login.js';
 import AllForcasts from './components/all-forcasts/AllForcasts';
@@ -16,10 +17,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listOfForcasts: [],
-      visibleForcast: [],
-      listOfMoonEvents: [],
-      visibleMoon: [],
       currentlyLoggedIn: null,
       ready: false,
       signupShowing: false,
@@ -28,47 +25,6 @@ class App extends React.Component {
 
     // this.service = new AuthService();
   }
-
-  today = async () => {
-    console.log('getting todays stuff');
-    await axios
-      .get('http://localhost:5000/today')
-      .then(response => {
-        console.log(response.data[1].timestamp);
-        return response.data[1].timestamp;
-      })
-      .catch(() => {
-        console.log('err');
-      });
-  };
-  // fetchEvents = async () => {
-  //   console.log("for the love of god");
-  //   let weather = await axios.get(
-  //     `https://api.aerisapi.com/forecasts/miami,fl?filter=daynight&limit=60&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR`
-  //   );
-
-  //   let moon = await axios.get(
-  //     `https://api.aerisapi.com/sunmoon/moonphases?limit=31&miami,fl&from=08/02/2019&format=json&client_id=ubVTEqqaNjJ2GI2wGFHqj&client_secret=DTmrLknIoE2Bk2HOBj6jHKJqcj0CBDK5KhyZTkoR
-  //   `
-  //   );
-
-  //   let actualWeatherArray = weather.data.response[0].periods;
-  //   console.log(actualWeatherArray);
-
-  //   let actualmoon = moon.data.response[0];
-  //   console.table(moon.data.response[0])
-
-  //   this.setState({
-  //     listOfForcasts: weather.data,
-  //     visibleForcast: weather.data,
-  //     ready: true
-  //   });
-  //   this.setState({
-  //     listOfMoonEvents: moon.data,
-  //     visibleMoon: moon.data,
-  //     ready: true
-  //   });
-  // };
 
   // Sign up/log in
   getCurrentlyLoggedInUser = () => {
@@ -102,7 +58,6 @@ class App extends React.Component {
 
   componentDidMount() {
     // this.fetchEvents();
-    this.today();
     this.getCurrentlyLoggedInUser();
   }
 
@@ -155,6 +110,11 @@ class App extends React.Component {
           {/* <Route  exact path ="/all-cosmic-events" render = {(props) => <AllCosmicEvents {...props} getData = {this.*MULTIPLE SEEDS*}  />    } /> */}
           <Route
             exact
+            path="/"
+            render={props => <Today ready={this.state.ready} />}
+          />
+          <Route
+            exact
             path="/all-moon"
             render={props => (
               <AllMoon
@@ -198,8 +158,6 @@ class App extends React.Component {
             )}
           />
         </Switch>
-        <Moment unix>{this.today()}</Moment>
-        yay! this is my app
       </div>
     );
   }
