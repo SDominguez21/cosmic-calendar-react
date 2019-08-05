@@ -2,3 +2,19 @@ img {
   height: 30%;
 }
 
+.cosmic-container {
+  height: 30%;
+}
+
+.moon-container {
+  height: 30%;
+}
+
+.weather-container {
+  height: 30%;
+}
+
+.today-stats {
+  text-align: center;
+  height: 30%;
+}

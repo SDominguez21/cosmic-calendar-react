@@ -47,6 +47,7 @@ export default class Today extends Component {
           {this.state.cosmicShowing ? (
             <div onClick={this.handleClickCosmic}>
               <p>{this.props.firstCosmic.name}</p>
+              {/* <Link to="">Cosmic Calendar</Link> */}
               {/* <p>{this.props.firstCosmic.}</p> */}
             </div>
           ) : (
@@ -55,7 +56,6 @@ export default class Today extends Component {
               onClick={this.handleClickCosmic}
             />
           )}
-          {/* <Link to="">See More</Link> */}
         </div>
 
         {/* moon */}
@@ -63,6 +63,7 @@ export default class Today extends Component {
           {this.state.moonShowing ? (
             <div onClick={this.handleClickMoon}>
               <p>{this.props.firstMoon.name}</p>
+              <Link to="/moon-calendar">Moon Calendaer</Link>
             </div>
           ) : (
             <img
@@ -71,7 +72,6 @@ export default class Today extends Component {
               onClick={this.handleClickMoon}
             />
           )}
-          <Link to="/moon-calendar">Moon Calendaer</Link>
         </div>
 
         {/* weather */}
@@ -80,6 +80,7 @@ export default class Today extends Component {
           {this.state.weatherShowing ? (
             <div onClick={this.handleClickWeather}>
               <p>{this.props.firstWeather.weather}</p>
+              <Link to="/weather-calendar">Weather Calendar</Link>
             </div>
           ) : (
             <img
@@ -87,7 +88,6 @@ export default class Today extends Component {
               onClick={this.handleClickWeather}
             />
           )}
-          <Link to="/weather-calendar">Weather Calendar</Link>
         </div>
       </div>
     );
