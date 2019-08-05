@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Today extends Component {
   state = {
-    cosmicInfo: {},
-    moonInfo: {},
-    weatherInfo: {},
     cosmicShowing: false,
     moonShowing: false,
     weatherShowing: false
-  };
-
-  today = async () => {
-    let result = await axios.get('http://localhost:5000/today');
-    return result.data;
   };
 
   // on toggle show info functions NOT DRY
@@ -36,52 +28,58 @@ export default class Today extends Component {
     });
   };
 
-  async componentDidMount() {
-    let allOfTodaysInfo = await this.today();
-    console.log(allOfTodaysInfo.cosmic);
-    this.setState({
-      cosmicInfo: allOfTodaysInfo.cosmic,
-      moonInfo: allOfTodaysInfo.moon,
-      weatherInfo: allOfTodaysInfo.weather
-    });
+  componentDidMount() {
+    console.log(this.props);
+    // this.setState({
+    //   cosmicInfo: this.props.firstCosmic,
+    //   moonInfo: this.props.firstMoon,
+    //   weatherInfo: this.props.firstWeather
+    // });
   }
 
   render() {
+    console.log('inside of today', this.props);
     return (
       <div>
         {/* cosmic */}
+        {/* seeds pending */}
         <div>
           {this.state.cosmicShowing ? (
-            <p onClick={this.handleClickCosmic}>{this.state.cosmicInfo.name}</p>
+            <div onClick={this.handleClickCosmic}>
+              <p>{this.props.firstCosmic.name}</p>
+              {/* <p>{this.props.firstCosmic.}</p> */}
+            </div>
           ) : (
             <img
               src="https://image.flaticon.com/icons/png/512/275/275246.png"
               onClick={this.handleClickCosmic}
             />
           )}
-          {/* <Link>See More</Link> */}
+          {/* <Link to="">See More</Link> */}
         </div>
 
         {/* moon */}
         <div>
           {this.state.moonShowing ? (
-            <p onClick={this.handleClickMoon}>{this.state.moonInfo.name}</p>
+            <div onClick={this.handleClickMoon}>
+              <p>{this.props.firstMoon.name}</p>
+            </div>
           ) : (
             <img
               src="https://png.pngtree.com/png-vector/20190215/ourlarge/pngtree-vector-moon-icon-png-image_516458.jpg"
               onClick={this.handleClickMoon}
             />
           )}
-          {/* <Link>See More</Link> */}
+          <Link to="/moon-calendar">Moon Calendar</Link>
         </div>
 
         {/* weather */}
         <div>
           {console.log(this.state.weatherInfo)}
           {this.state.weatherShowing ? (
-            <p onClick={this.handleClickWeather}>
-              {this.state.weatherInfo.weather}
-            </p>
+            <div onClick={this.handleClickWeather}>
+              <p>{this.props.firstWeather.weather}</p>
+            </div>
           ) : (
             <img
               src="https://cdn1.iconfinder.com/data/icons/weather-189/64/weather-icons-rainy-2-512.png"

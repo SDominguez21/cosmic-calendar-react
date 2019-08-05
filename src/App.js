@@ -6,25 +6,24 @@ import Navbar from './components/navbar/Navbar.js';
 import Today from './components/today/Today';
 import Signup from './components/signup/Signup.js';
 import Login from './components/login/Login.js';
-import AllForcasts from './components/all-forcasts/AllForcasts';
-import AllMoon from './components/all-moon/AllMoon';
-import ForcastDetails from './components/forcast-details/ForcastDetails';
-// import AllCosmicEvents from "./components/all-comsic-events/AllaCosmicEvents";ll
+import MoonCalendar from './components/moon-calendar/MoonCalendar.js';
 import Moment from 'react-moment';
-// import AuthService from "./services/AuthService.js";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentlyLoggedIn: null,
-      ready: false,
-      signupShowing: false,
-      loginShowing: false
-    };
+  state = {
+    currentlyLoggedIn: null,
+    ready: false,
+    signupShowing: false,
+    loginShowing: false,
+    cosmicInfo: [],
+    moonInfo: [],
+    weatherInfo: []
+  };
 
-    // this.service = new AuthService();
-  }
+  month = async () => {
+    let result = await axios.get('http://localhost:5000/allCallsForMonth');
+    return result.data;
+  };
 
   // Sign up/log in
   getCurrentlyLoggedInUser = () => {
@@ -56,7 +55,14 @@ class App extends React.Component {
     this.setState({ [theForm]: !this.state[theForm] });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    let apiResults = await this.month();
+    console.log('should get:', apiResults);
+    this.setState({
+      cosmicInfo: apiResults.cosmic,
+      moonInfo: apiResults.moon,
+      weatherInfo: apiResults.weather
+    });
     // this.fetchEvents();
     this.getCurrentlyLoggedInUser();
   }
@@ -107,53 +113,38 @@ class App extends React.Component {
           )}
         </div>
         <Switch>
-          {/* <Route  exact path ="/all-cosmic-events" render = {(props) => <AllCosmicEvents {...props} getData = {this.*MULTIPLE SEEDS*}  />    } /> */}
           <Route
             exact
             path="/"
-            render={props => <Today ready={this.state.ready} />}
-          />
-          <Route
-            exact
-            path="/all-moon"
             render={props => (
-              <AllMoon
-                // {...props}
-                listOfMoonEvents={this.state.visibleMoon}
+              <Today
+                firstCosmic={this.state.cosmicInfo}
+                firstMoon={this.state.moonInfo[0]}
+                firstWeather={this.state.weatherInfo[0]}
                 ready={this.state.ready}
               />
             )}
           />
-          <Route
-            exact
-            path="/all-forcasts"
-            render={props => (
-              <AllForcasts
-                {...props}
-                listOfForcasts={this.state.visibleForcast}
-                ready={this.state.ready}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/forcast-details/:id"
-            render={props => (
-              <ForcastDetails
-                {...props}
-                listOfForcasts={this.state.visibleForcast}
-                ready={this.state.ready}
-              />
-            )}
-          />
+
           <Route
             exact
             path="/home"
             render={props => (
               <Home
-                {...props}
-                listOfForcasts={this.state.visibleForcast}
+                // user events
                 ready={this.state.ready}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/moon-calendar"
+            render={() => (
+              <MoonCalendar
+                // look at endpoint docs for specific date query
+                currentlyLoggedIn={this.state.currentlyLoggedIn}
+                // redirect
+                moonEvents={this.state.moonInfo}
               />
             )}
           />
