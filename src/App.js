@@ -9,6 +9,15 @@ import Login from './components/login/Login.js';
 import MoonCalendar from './components/moon-calendar/MoonCalendar.js';
 import Moment from 'react-moment';
 
+// to-do:
+// -redirect mooncal/access to logged in users only
+// -putting events into calendar:
+// make api call blank date to blank date,
+// put the events in appropriate time box ("sort events into cal"),
+// repeat working solution to cosmic cal and weather cal,
+// write seeds for cosmic events => DONE
+// calculate moon phases (based off current api structure)
+
 class App extends React.Component {
   state = {
     currentlyLoggedIn: null,
@@ -131,7 +140,7 @@ class App extends React.Component {
             path="/home"
             render={props => (
               <Home
-                // user events
+                // user events/ profile (two CRUDS)
                 ready={this.state.ready}
               />
             )}

@@ -46,7 +46,7 @@ export default class Today extends Component {
         <div>
           {this.state.cosmicShowing ? (
             <div onClick={this.handleClickCosmic}>
-              <p>{this.props.firstCosmic.name}</p>
+              <p>{this.props.firstCosmic}</p>
               {/* <p>{this.props.firstCosmic.}</p> */}
             </div>
           ) : (
@@ -62,15 +62,15 @@ export default class Today extends Component {
         <div>
           {this.state.moonShowing ? (
             <div onClick={this.handleClickMoon}>
-              <p>{this.props.firstMoon.name}</p>
+              <p>{this.props.firstMoon}</p>
             </div>
           ) : (
-            <img
-              src="https://png.pngtree.com/png-vector/20190215/ourlarge/pngtree-vector-moon-icon-png-image_516458.jpg"
+            <img class="moon-eyes"
+              src={require("../../moon.png")}
               onClick={this.handleClickMoon}
             />
           )}
-          <Link to="/moon-calendar">Moon Calendar</Link>
+          <Link to="/moon-calendar">Moon Calendaer</Link>
         </div>
 
         {/* weather */}
@@ -78,7 +78,7 @@ export default class Today extends Component {
           {console.log(this.state.weatherInfo)}
           {this.state.weatherShowing ? (
             <div onClick={this.handleClickWeather}>
-              <p>{this.props.firstWeather.weather}</p>
+              <p>{this.props.firstWeather}</p>
             </div>
           ) : (
             <img
