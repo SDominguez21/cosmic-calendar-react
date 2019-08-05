@@ -46,7 +46,7 @@ export default class Today extends Component {
         <div>
           {this.state.cosmicShowing ? (
             <div onClick={this.handleClickCosmic}>
-              <p>{this.props.firstCosmic}</p>
+              <p>{this.props.firstCosmic.name}</p>
               {/* <p>{this.props.firstCosmic.}</p> */}
             </div>
           ) : (
@@ -62,11 +62,12 @@ export default class Today extends Component {
         <div>
           {this.state.moonShowing ? (
             <div onClick={this.handleClickMoon}>
-              <p>{this.props.firstMoon}</p>
+              <p>{this.props.firstMoon.name}</p>
             </div>
           ) : (
-            <img class="moon-eyes"
-              src={require("../../moon.png")}
+            <img
+              class="moon-eyes"
+              src={require('../../moon.png')}
               onClick={this.handleClickMoon}
             />
           )}
@@ -78,7 +79,7 @@ export default class Today extends Component {
           {console.log(this.state.weatherInfo)}
           {this.state.weatherShowing ? (
             <div onClick={this.handleClickWeather}>
-              <p>{this.props.firstWeather}</p>
+              <p>{this.props.firstWeather.weather}</p>
             </div>
           ) : (
             <img
@@ -86,7 +87,7 @@ export default class Today extends Component {
               onClick={this.handleClickWeather}
             />
           )}
-          {/* <Link>See More</Link> */}
+          <Link to="/weather-calendar">Weather Calendar</Link>
         </div>
       </div>
     );

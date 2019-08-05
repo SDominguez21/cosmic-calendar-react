@@ -7,6 +7,8 @@ import Today from './components/today/Today';
 import Signup from './components/signup/Signup.js';
 import Login from './components/login/Login.js';
 import MoonCalendar from './components/moon-calendar/MoonCalendar.js';
+import WeatherCalendar from './components/weather-calendar/WeatherCalendar.js';
+// import CosmicCalendar from './components/cosmic-calendar/CosmicCalendar.js';
 import Moment from 'react-moment';
 
 // to-do:
@@ -135,7 +137,7 @@ class App extends React.Component {
             )}
           />
 
-          <Route
+          {/* <Route
             exact
             path="/home"
             render={props => (
@@ -144,7 +146,8 @@ class App extends React.Component {
                 ready={this.state.ready}
               />
             )}
-          />
+          /> */}
+
           <Route
             exact
             path="/moon-calendar"
@@ -152,8 +155,29 @@ class App extends React.Component {
               <MoonCalendar
                 // look at endpoint docs for specific date query
                 currentlyLoggedIn={this.state.currentlyLoggedIn}
-                // redirect
                 moonEvents={this.state.moonInfo}
+              />
+            )}
+          />
+
+          {/* <Route
+            exact
+            path="/cosmic-calendar"
+            render={() => (
+              <CosmicCalendar
+                currentlyLoggedIn={this.state.currentlyLoggedIn}
+                cosmicEvents={this.state.cosmicInfo}
+              />
+            )}
+            /> */}
+
+          <Route
+            exact
+            path="/weather-calendar"
+            render={() => (
+              <WeatherCalendar
+                currentlyLoggedIn={this.state.currentlyLoggedIn}
+                weatherEvents={this.state.weatherInfo}
               />
             )}
           />
