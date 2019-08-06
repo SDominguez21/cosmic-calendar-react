@@ -5,17 +5,23 @@ import './weatherCalendar.css';
 
 export default class WeatherCalendar extends Component {
   render() {
-    console.log('weather events', this.props.weatherEvents);
+    console.log('weather events', this.props);
+    const sanitizedWeatherEvents = this.props.weatherEvents.map(wEvent => {
+      let oneWeather = {};
+      // let sanitizedDate = wEvent.dateTimeISO.split('T')[0];
+      // oneWeather.date = sanitizedDate;
+      oneWeather.date = wEvent.dateTimeISO;
+      oneWeather.title = wEvent.weather;
+      return oneWeather;
+    });
+
     return (
       <div>
         <FullCalendar
           defaultView="dayGridMonth"
           plugins={[dayGridPlugin]}
           weekends={true}
-          events={[
-            { title: 'event 1', date: '2019-04-01' },
-            { title: 'event 2', date: '2019-04-02' }
-          ]}
+          events={sanitizedWeatherEvents}
         />
         {/* <ul>
           <li>

@@ -178,6 +178,8 @@ class App extends React.Component {
               <WeatherCalendar
                 currentlyLoggedIn={this.state.currentlyLoggedIn}
                 weatherEvents={this.state.weatherInfo}
+                moonEvents={this.state.moonInfo}
+                cosmicEvents={this.state.cosmicInfo}
               />
             )}
           />
