@@ -153,7 +153,7 @@ class App extends React.Component {
             path="/moon-calendar"
             render={() => (
               <MoonCalendar
-                // look at endpoint docs for specific date query
+                // look at endpoint docs for specific date query yay
                 currentlyLoggedIn={this.state.currentlyLoggedIn}
                 moonEvents={this.state.moonInfo}
               />
