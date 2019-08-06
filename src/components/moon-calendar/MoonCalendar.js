@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FullCalendar from '@fullcalendar/react';
-// import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './moonCalendar.css';
 
@@ -10,12 +9,6 @@ export default class MoonCalendar extends Component {
 
     return (
       <div>
-        {/* <ul> */}
-        {/* <li> */}
-        {/* {this.props.moonEvents.map(mEvent => {
-            return <p>{mEvent.name}</p>;
-          })} */}
-        {/* <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} /> */}
         <FullCalendar
           defaultView="dayGridMonth"
           plugins={[dayGridPlugin]}
@@ -25,6 +18,11 @@ export default class MoonCalendar extends Component {
             { title: 'event 2', date: '2019-04-02' }
           ]}
         />
+        {/* <ul> */}
+        {/* <li> */}
+        {/* {this.props.moonEvents.map(mEvent => {
+            return <p>{mEvent.name}</p>;
+          })} */}
         {/* </li> */}
         {/* </ul> */}
       </div>
