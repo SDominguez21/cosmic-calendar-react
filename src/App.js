@@ -137,7 +137,7 @@ class App extends React.Component {
             )}
           />
 
-          {/* <Route
+          <Route
             exact
             path="/home"
             render={props => (
@@ -146,7 +146,7 @@ class App extends React.Component {
                 ready={this.state.ready}
               />
             )}
-          /> */}
+          />
 
           <Route
             exact
