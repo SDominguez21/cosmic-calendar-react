@@ -14,11 +14,11 @@ import Moment from 'react-moment';
 // to-do:
 // -redirect mooncal/access to logged in users only
 // -putting events into calendar:
-// make api call blank date to blank date,
+// make api call blank date to blank date, from - to
 // put the events in appropriate time box ("sort events into cal"),
-// repeat working solution to cosmic cal and weather cal,
-// write seeds for cosmic events => DONE
+//connect seeds to cosmic events
 // calculate moon phases (based off current api structure)
+//add eyes that follow cursor
 
 class App extends React.Component {
   state = {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import today from './today.css';
 
 export default class Today extends Component {
   state = {
@@ -40,12 +41,12 @@ export default class Today extends Component {
   render() {
     console.log('inside of today', this.props);
     return (
-      <div>
+      <div className="around- today-container">
         {/* cosmic */}
         {/* seeds pending */}
-        <div>
+        <div className="cosmic-container">
           {this.state.cosmicShowing ? (
-            <div onClick={this.handleClickCosmic}>
+            <div className="today-stats" onClick={this.handleClickCosmic}>
               <p>{this.props.firstCosmic.name}</p>
               {/* <Link to="">Cosmic Calendar</Link> */}
               {/* <p>{this.props.firstCosmic.}</p> */}
@@ -59,15 +60,15 @@ export default class Today extends Component {
         </div>
 
         {/* moon */}
-        <div>
+        <div className="around- moon-container">
           {this.state.moonShowing ? (
-            <div onClick={this.handleClickMoon}>
+            <div className="today-stats" onClick={this.handleClickMoon}>
               <p>{this.props.firstMoon.name}</p>
               <Link to="/moon-calendar">Moon Calendaer</Link>
             </div>
           ) : (
             <img
-              class="moon-eyes"
+              className="moon-eyes"
               src={require('../../moon.png')}
               onClick={this.handleClickMoon}
             />
@@ -75,10 +76,10 @@ export default class Today extends Component {
         </div>
 
         {/* weather */}
-        <div>
+        <div className="around- weather-container">
           {console.log(this.state.weatherInfo)}
           {this.state.weatherShowing ? (
-            <div onClick={this.handleClickWeather}>
+            <div className="today-stats" onClick={this.handleClickWeather}>
               <p>{this.props.firstWeather.weather}</p>
               <Link to="/weather-calendar">Weather Calendar</Link>
             </div>
