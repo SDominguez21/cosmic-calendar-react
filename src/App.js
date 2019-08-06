@@ -6,9 +6,10 @@ import Navbar from './components/navbar/Navbar.js';
 import Today from './components/today/Today';
 import Signup from './components/signup/Signup.js';
 import Login from './components/login/Login.js';
-import MoonCalendar from './components/moon-calendar/MoonCalendar.js';
-import WeatherCalendar from './components/weather-calendar/WeatherCalendar.js';
-import CosmicCalendar from './components/cosmic-calendar/CosmicCalendar.js';
+import AllCalendar from './components/all-calendar/AllCalendar.js';
+// import MoonCalendar from './components/moon-calendar/MoonCalendar.js';
+// import WeatherCalendar from './components/weather-calendar/WeatherCalendar.js';
+// import CosmicCalendar from './components/cosmic-calendar/CosmicCalendar.js';
 import Moment from 'react-moment';
 
 // to-do:
@@ -148,7 +149,7 @@ class App extends React.Component {
             )}
           />
 
-          <Route
+          {/* <Route
             exact
             path="/moon-calendar"
             render={() => (
@@ -158,9 +159,9 @@ class App extends React.Component {
                 moonEvents={this.state.moonInfo}
               />
             )}
-          />
+          /> */}
 
-          <Route
+          {/* <Route
             exact
             path="/cosmic-calendar"
             render={() => (
@@ -169,13 +170,23 @@ class App extends React.Component {
                 cosmicEvents={this.state.cosmicInfo}
               />
             )}
-          />
+          /> */}
 
-          <Route
+          {/* <Route
             exact
             path="/weather-calendar"
             render={() => (
               <WeatherCalendar
+                currentlyLoggedIn={this.state.currentlyLoggedIn}
+                weatherEvents={this.state.weatherInfo}
+              />
+            )}
+          /> */}
+          <Route
+            exact
+            path="/all-calendar"
+            render={() => (
+              <AllCalendar
                 currentlyLoggedIn={this.state.currentlyLoggedIn}
                 weatherEvents={this.state.weatherInfo}
                 moonEvents={this.state.moonInfo}

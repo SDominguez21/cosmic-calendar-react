@@ -1,7 +1,8 @@
-/* @import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 
 body {
+  margin: 0 auto;
   margin-top: 40px;
   text-align: center;
   font-size: 14px;
@@ -52,4 +53,4 @@ h1 {
 #calendar {
   float: right;
   width: 900px;
-} */
+}
