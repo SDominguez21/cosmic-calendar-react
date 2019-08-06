@@ -48,8 +48,8 @@ export default class Today extends Component {
           {this.state.cosmicShowing ? (
             <div className="today-stats" onClick={this.handleClickCosmic}>
               <p>{this.props.firstCosmic.name}</p>
-              {/* <Link to="">Cosmic Calendar</Link> */}
               {/* <p>{this.props.firstCosmic.}</p> */}
+              <Link to="/cosmic-calendar">Cosmic Calendar</Link>
             </div>
           ) : (
             <img

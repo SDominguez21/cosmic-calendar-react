@@ -8,7 +8,7 @@ import Signup from './components/signup/Signup.js';
 import Login from './components/login/Login.js';
 import MoonCalendar from './components/moon-calendar/MoonCalendar.js';
 import WeatherCalendar from './components/weather-calendar/WeatherCalendar.js';
-// import CosmicCalendar from './components/cosmic-calendar/CosmicCalendar.js';
+import CosmicCalendar from './components/cosmic-calendar/CosmicCalendar.js';
 import Moment from 'react-moment';
 
 // to-do:
@@ -160,7 +160,7 @@ class App extends React.Component {
             )}
           />
 
-          {/* <Route
+          <Route
             exact
             path="/cosmic-calendar"
             render={() => (
@@ -169,7 +169,7 @@ class App extends React.Component {
                 cosmicEvents={this.state.cosmicInfo}
               />
             )}
-            /> */}
+          />
 
           <Route
             exact

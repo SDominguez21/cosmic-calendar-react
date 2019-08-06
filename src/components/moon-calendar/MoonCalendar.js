@@ -12,7 +12,7 @@ export default class MoonCalendar extends Component {
         <FullCalendar
           defaultView="dayGridMonth"
           plugins={[dayGridPlugin]}
-          weekends={false}
+          weekends={true}
           events={[
             { title: 'event 1', date: '2019-04-01' },
             { title: 'event 2', date: '2019-04-02' }
