@@ -15,7 +15,7 @@ export default class MoonCalendar extends Component {
           weekends={true}
           events={[
             { title: 'event 1', date: '2019-04-01' },
-            { title: 'event  2', date: '2019-04-02' }
+            { title: 'even t  2', date: '2019-04-02' }
           ]}
         />
         {/* <ul> */}
