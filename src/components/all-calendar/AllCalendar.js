@@ -59,7 +59,7 @@ export default class AllCalendar extends Component {
         <FullCalendar
           defaultView="dayGridMonth"
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          editable={true}
+          // editable={true}
           weekends={true}
           header={{
             left: 'prev,next,today',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/home/Home.js';
 import Navbar from './components/navbar/Navbar.js';
@@ -47,7 +47,7 @@ class App extends React.Component {
       .then(response => {
         console.log('yay really fetching the user now');
         let theUser = response.data;
-        this.setState({ currentlyLoggedIn: theUser });
+        this.setState({ currentlyLoggedIn: theUser, ready: true });
         return theUser;
       })
       .catch(() => {
@@ -145,6 +145,7 @@ class App extends React.Component {
               <Home
                 // user events/ profile (two CRUDS)
                 ready={this.state.ready}
+                theUser={this.state.currentlyLoggedIn}
               />
             )}
           />
@@ -191,6 +192,8 @@ class App extends React.Component {
                 weatherEvents={this.state.weatherInfo}
                 moonEvents={this.state.moonInfo}
                 cosmicEvents={this.state.cosmicInfo}
+                ready={this.state.ready}
+                theUser={this.state.currentlyLoggedIn}
               />
             )}
           />

@@ -9,8 +9,8 @@ function Navbar(props) {
   return (
     <nav>
       {props.theUser && (
-        <Link to="/home" style={{ textDecoration: 'none', margin: '10px' }}>
-          Home
+        <Link to="/" style={{ textDecoration: 'none', margin: '10px' }}>
+          Today
         </Link>
       )}
 
@@ -23,9 +23,11 @@ function Navbar(props) {
 
       {props.theUser && (
         <span>
-          <Link to="/" onClick={doTheLogout}>
-            Log Out
-          </Link>
+          <button>
+            <Link to="/" onClick={doTheLogout}>
+              Log Out
+            </Link>
+          </button>
 
           <span>Hello, {props.theUser.username}</span>
         </span>
