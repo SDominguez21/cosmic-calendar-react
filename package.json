@@ -40,7 +40,7 @@
   "devDependencies": {
     "babel-preset-es2015-node5": "^1.2.0",
     "css-loader": "^3.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^1.0.0"
   }
